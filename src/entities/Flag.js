@@ -1,12 +1,10 @@
-var Player = Juicy.Entity.extend({
-	components: ['Box', 'PlayerMovement', 'Physics'],
-
-	hasFlag: false,
+var Flag = Juicy.Entity.extend({
+	components: ['Box', 'Physics'],
 
 	init: function() {
 		this.transform.height = 0.8;
 		this.transform.width = 1.4;
-		this.getComponent('Box').fillStyle = 'lawngreen';
+		this.getComponent('Box').fillStyle = 'blueviolet';
 	},
 
 	render: function(context) {

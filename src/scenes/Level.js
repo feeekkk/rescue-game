@@ -3,6 +3,8 @@ var Level = Juicy.Scene.extend({
 
 	constructor: function() {
 		this.player = new Player(this);
+		this.flag = new Flag(this);
+		this.collisionDetector = new CollisionDetector(this);
 
 		this.bg = new Juicy.Entity(this, ['Box']);
         this.bg.transform.position.x = 0;
@@ -38,13 +40,19 @@ var Level = Juicy.Scene.extend({
 					this.player.transform.position.x = spawn.x;
 					this.player.transform.position.y = spawn.y;
 					break;
+				case 'flag':
+					this.flag.transform.position.x = spawn.x;
+					this.flag.transform.position.y = spawn.y;
+					break;
 			}
 		}
 	},
 
 	update: function(dt) {
 		this.player.update(dt);
+		this.flag.update(dt);
 		this.updateCamera(dt);
+		this.collisionDetector.update(dt);
 	},
 
 	updateCamera: function(dt) {
@@ -96,6 +104,7 @@ var Level = Juicy.Scene.extend({
 		this.tileManager.render(context, bounds.position.x, bounds.position.y, bounds.width, bounds.height);
 
 		this.player.render(context);
+		this.flag.render(context);
 
 		context.restore();
 	}

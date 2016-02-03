@@ -9,7 +9,8 @@ Juicy.Component.create('LevelTiles', {
     PLATFORM: '-',
     WALL: 'X',
     PLAYER: '^',
-    SPAWNABLE: /\^/,
+    FLAG: '%',
+    SPAWNABLE: /\^|%/,
     spawns: [],
     tiles: [],
 
@@ -168,8 +169,14 @@ Juicy.Component.create('LevelTiles', {
            var x = toSpawn % this.SECTION_WIDTH;
            var y = Math.floor(toSpawn / this.SECTION_WIDTH);
 
-           if (cfg[toSpawn] === this.PLAYER)
-              sptype = 'player';
+              switch(cfg[toSpawn]) {
+                    case this.PLAYER:
+                        sptype = 'player';
+                        break;
+                    case this.FLAG:
+                        sptype = 'flag';
+                        break;
+              }
 
            this.spawns.push({
               type: sptype,
@@ -250,7 +257,7 @@ Juicy.Component.create('LevelTiles', {
         + '                                        '
         + '                                        '
         + '-                                       '
-        + '-                                       '
+        + '-                       %               '
         + '-                      ----             '
         + '-                                       '
         + '-                                       '
