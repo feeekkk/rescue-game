@@ -95,11 +95,7 @@ var Level = Juicy.Scene.extend({
 
 	render: function(context) {
 		context.save();
-		this.bg.render(context);
-		var sc = this.tileSize;
-		context.scale(sc, sc);
-		context.translate(-this.camera.x, -this.camera.y);
-
+		
 		var bounds = {
 			position: {
 				x: this.camera.x,
@@ -108,6 +104,12 @@ var Level = Juicy.Scene.extend({
 			width: GAME_WIDTH / this.tileSize,
 			height: GAME_HEIGHT / this.tileSize
 		};
+
+		var sc = this.tileSize;
+		context.scale(sc, sc);
+		context.translate(-this.camera.x, -this.camera.y);
+
+		this.bg.render(context, bounds.position.x, bounds.position.y, bounds.width, bounds.height);
 
 		this.tileManager.render(context, bounds.position.x, bounds.position.y, bounds.width, bounds.height);
 
