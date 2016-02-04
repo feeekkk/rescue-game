@@ -1,5 +1,5 @@
 var Player = Juicy.Entity.extend({
-	components: ['Box', 'PlayerMovement', 'Physics'],
+	components: ['Box', 'PlayerMovement', 'Physics', 'Particles'],
 
 	hasFlag: false,
 
@@ -11,6 +11,7 @@ var Player = Juicy.Entity.extend({
 
 	render: function(context) {
 		this.getComponent('Box').render(context, this.transform.position.x, this.transform.position.y, this.transform.width, this.transform.height);
+		this.getComponent('Particles').render(context);
 	},
 
 	die: function() {

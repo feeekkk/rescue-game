@@ -17,6 +17,42 @@ Juicy.Component.create('Physics', {
 
 	jump: function() {
 		if (this.onGround) {
+			var self = this;
+				var butt = {
+	            x: this.entity.transform.position.x,
+	            y: this.entity.transform.position.y + this.entity.transform.height
+         	}
+
+			this.entity.getComponent('Particles').spawn("0, 255, 0, ", 0.3,  8, function(particle, ndx) {
+		            if (ndx > 1) {
+		               return ndx - 1;
+		            }
+		            else {
+		               return 0;
+		            }
+		         },
+		          function(particle) {
+		             particle.x = self.entity.transform.position.x + self.entity.transform.width/2 * (Math.random() * 2);
+		             particle.y = self.entity.transform.position.y + self.entity.transform.height + 0.7;
+		            particle.dx = self.dx + Math.random() * 4 - 2;
+		            particle.dy = self.dy / 8;
+		            particle.startY = butt.y;
+		            particle.startLife = 30;
+		            particle.life = particle.startLife;
+		         }, function(particle) {
+		            particle.x += particle.dx * 0.01;
+		            particle.y += particle.dy * 0.01;
+		            particle.dx *= 0.9;
+		            particle.dy *= 0.9;
+
+		            if (particle.life > particle.startLife) {
+		               particle.alpha = 1;
+		            }
+		            else {
+		               particle.alpha = particle.life / particle.startLife;
+		            }
+		         });
+
 			this.dy = this.jumpPower;
 			this.onGround = false;
 		}

@@ -7,12 +7,8 @@ var Level = Juicy.Scene.extend({
 		this.flag = new Flag(this);
 		this.collisionDetector = new CollisionDetector(this);
 
-		this.bg = new Juicy.Entity(this, ['Box']);
-        this.bg.transform.position.x = 0;
-        this.bg.transform.position.y = 0;
-        this.bg.transform.width = Game.width;
-        this.bg.transform.height = Game.height;
-        this.bg.getComponent('Box').fillStyle = 'darkslategray';
+		this.bg = new Juicy.Entity(this, ['Image']);
+		this.bg.getComponent('Image').setImage('/img/trippy.jpg');
 
 		this.tileManager = new Juicy.Entity(this, ['LevelTiles']);
 		this.levelTiles = this.tileManager.getComponent('LevelTiles');
