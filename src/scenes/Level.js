@@ -11,6 +11,8 @@ var Level = Juicy.Scene.extend({
 		this.bg = new Juicy.Entity(this, ['Image']);
 		this.bg.getComponent('Image').setImage('/img/space.jpg');
 
+		this.GUI = new GUI(this);
+
 		this.tileManager = new Juicy.Entity(this, ['LevelTiles']);
 		this.levelTiles = this.tileManager.getComponent('LevelTiles');
 
@@ -61,6 +63,7 @@ var Level = Juicy.Scene.extend({
 		this.flag.update(dt);
 		this.updateCamera(dt);
 		this.collisionDetector.update(dt);
+		this.GUI.update(dt);
 	},
 
 	updateCamera: function(dt) {
@@ -95,7 +98,7 @@ var Level = Juicy.Scene.extend({
 
 	render: function(context) {
 		context.save();
-		
+
 		var bounds = {
 			position: {
 				x: this.camera.x,
@@ -123,5 +126,7 @@ var Level = Juicy.Scene.extend({
 		this.portal.render(context);
 
 		context.restore();
+
+		this.GUI.render(context);
 	}
 });
