@@ -12,7 +12,8 @@ Juicy.Component.create('LevelTiles', {
     FLAG: '%',
     DIAMOND: '*',
     SPIKE: 'v',
-    SPAWNABLE: /\^|%|\*/,
+    PORTAL: 'o',
+    SPAWNABLE: /\^|%|\*|o/,
     spawns: [],
     tiles: [],
 
@@ -184,8 +185,8 @@ Juicy.Component.create('LevelTiles', {
                     case this.DIAMOND:
                         sptype = 'diamond';
                         break;
-                    case this.SPIKE:
-                        sptype = 'spike';
+                    case this.PORTAL:
+                        sptype = 'portal';
                         break;
               }
 
@@ -283,7 +284,7 @@ Juicy.Component.create('LevelTiles', {
         + '-                          -----        '
         + '-                                       '
         + '-                                       '
-        + '-                                       '
+        + '-                                   o   '
         + '-                                       '
         + '-                                       '
         + '-                                       '

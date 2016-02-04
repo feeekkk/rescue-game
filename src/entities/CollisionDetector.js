@@ -3,6 +3,7 @@ var CollisionDetector = Juicy.Entity.extend({
 	init: function() {
 		this.player = this.scene.player;
 		this.flag = this.scene.flag;
+		this.portal = this.scene.portal;
 		this.diamonds = this.scene.diamonds;
 	},
 
@@ -10,8 +11,16 @@ var CollisionDetector = Juicy.Entity.extend({
 		if (!this.player.hasFlag) {
 			this.testCollisionWithFlag();
 		}
+		this.testCollisionWithPortal();
 		this.testCollisionWithDiamond();
 		this.testCollisionWithSpike();
+	},
+
+	testCollisionWithPortal: function() {
+		if (this.player.transform.testCollision(this.portal.transform)) {
+			// go to next level
+			alert('pass');
+		}
 	},
 
 	testCollisionWithFlag: function() {

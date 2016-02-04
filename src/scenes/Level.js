@@ -5,6 +5,7 @@ var Level = Juicy.Scene.extend({
 	constructor: function() {
 		this.player = new Player(this);
 		this.flag = new Flag(this);
+		this.portal = new Portal(this);
 		this.collisionDetector = new CollisionDetector(this);
 
 		this.bg = new Juicy.Entity(this, ['Image']);
@@ -47,10 +48,9 @@ var Level = Juicy.Scene.extend({
 					d.transform.position.y = spawn.y;
 					this.diamonds.push(d);
 					break;
-				case 'spike':
-					var s = new Spike();
-					s.transform.position.x = spawn.x;
-					s.transform.position.y = spawn.y;
+				case 'portal':
+					this.portal.transform.position.x = spawn.x;
+					this.portal.transform.position.y = spawn.y;
 					break;
 			}
 		}
@@ -117,6 +117,8 @@ var Level = Juicy.Scene.extend({
 		for (var i = 0; i < this.diamonds.length; i++) {
 			this.diamonds[i].render(context);
 		}
+
+		this.portal.render(context);
 
 		context.restore();
 	}
