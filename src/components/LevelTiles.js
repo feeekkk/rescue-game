@@ -11,6 +11,7 @@ Juicy.Component.create('LevelTiles', {
     PLAYER: '^',
     FLAG: '%',
     DIAMOND: '*',
+    SPIKE: 'v',
     SPAWNABLE: /\^|%|\*/,
     spawns: [],
     tiles: [],
@@ -21,7 +22,10 @@ Juicy.Component.create('LevelTiles', {
     },
 
     imagesLoaded: function() {
-        if (this.tile1rdy) {
+        if (
+            this.tile1rdy &&
+            this.tile2rdy
+        ) {
             return true;
         }
         return false;
@@ -50,7 +54,7 @@ Juicy.Component.create('LevelTiles', {
      */
     isTileBlocking: function(x, y) {
         if (x < 0 || x >= this.width || y < 0 || y >= this.height) return true;
-        return this.getTile(x, y) !== this.EMPTY;
+        return this.getTile(x, y) !== this.EMPTY && this.getTile(x, y) !== this.SPIKE;
     },
 
     // called from player movement
@@ -180,6 +184,9 @@ Juicy.Component.create('LevelTiles', {
                     case this.DIAMOND:
                         sptype = 'diamond';
                         break;
+                    case this.SPIKE:
+                        sptype = 'spike';
+                        break;
               }
 
            this.spawns.push({
@@ -223,6 +230,9 @@ Juicy.Component.create('LevelTiles', {
                case this.WALL:
                   this.renderNormalTile(context, i * 20, j * 20, 20, 20);
                   break;
+              case this.SPIKE:
+                this.renderSpike(context, i * 20, j * 20, 20, 20);
+                break;
             }
          }
       }
@@ -230,6 +240,10 @@ Juicy.Component.create('LevelTiles', {
 
    renderNormalTile: function(context, x, y, width, height) {
       context.drawImage(this.tileImg, x, y, width, height);
+   },
+
+   renderSpike: function(context, x, y, width, height) {
+       context.drawImage(this.spikeImg, x, y, width, height);
    },
 
    parse: function(config) {
@@ -262,24 +276,24 @@ Juicy.Component.create('LevelTiles', {
         + '     --------   --- --  -  -   -------- '
         + '-    --------                           '
         + '-    --------                           '
-        + '-                      ----             '
         + '-                                       '
-        + '-                                       '
-        + '-                                       '
-        + '-             ---                       '
-        + '-                                       '
-        + '-                                       '
-        + '-                                       '
-        + '-                          ----         '
-        + '-                                       '
-        + '-                                       '
-        + '-                                       '
-        + '-    ----                               '
+        + '-vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv'
         + '-                                       '
         + '-                                       '
         + '-                                       '
         + '-                                       '
-        + '-          ---                          '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
         + '-                                       '
         + '-                                       '
         + '-                                       '
@@ -293,6 +307,14 @@ Juicy.Component.create('LevelTiles', {
 
         this.tileImg.onload = function() {
             self.tile1rdy = true;
+            self.renderCanvas();
+        }
+
+        this.spikeImg = new Image();
+        this.spikeImg.src = 'img/spike.png';
+
+        this.spikeImg.onload = function() {
+            self.tile2rdy = true;
             self.renderCanvas();
         }
 

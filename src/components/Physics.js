@@ -5,7 +5,7 @@ Juicy.Component.create('Physics', {
 	constructor: function() {
 		this.dx = this.dy = 0;
 		this.onGround = false;
-		this.jumpPower = -25;
+		this.jumpPower = -35;
 
 		this.collisions = {
 			above: false,
