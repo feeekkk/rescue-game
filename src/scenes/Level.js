@@ -1,5 +1,6 @@
 var Level = Juicy.Scene.extend({
 	tileSize: 20,
+	diamonds: [],
 
 	constructor: function() {
 		this.player = new Player(this);
@@ -43,6 +44,12 @@ var Level = Juicy.Scene.extend({
 				case 'flag':
 					this.flag.transform.position.x = spawn.x;
 					this.flag.transform.position.y = spawn.y;
+					break;
+				case 'diamond':
+					var d = new Diamond();
+					d.transform.position.x = spawn.x;
+					d.transform.position.y = spawn.y;
+					this.diamonds.push(d);
 					break;
 			}
 		}
@@ -105,6 +112,10 @@ var Level = Juicy.Scene.extend({
 
 		this.player.render(context);
 		this.flag.render(context);
+		
+		for(var i = 0; i < this.diamonds.length; i++) {
+			this.diamonds[i].render(context);
+		}
 
 		context.restore();
 	}
