@@ -8,7 +8,7 @@ var Level = Juicy.Scene.extend({
 		this.collisionDetector = new CollisionDetector(this);
 
 		this.bg = new Juicy.Entity(this, ['Image']);
-		this.bg.getComponent('Image').setImage('/img/trippy.jpg');
+		this.bg.getComponent('Image').setImage('/img/space.jpg');
 
 		this.tileManager = new Juicy.Entity(this, ['LevelTiles']);
 		this.levelTiles = this.tileManager.getComponent('LevelTiles');

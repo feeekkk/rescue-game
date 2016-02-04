@@ -2,8 +2,8 @@ var Flag = Juicy.Entity.extend({
 	components: ['Box', 'Physics'],
 
 	init: function() {
-		this.transform.height = 0.8;
-		this.transform.width = 1.4;
+		this.transform.height = 1;
+		this.transform.width = 0.5;
 		this.getComponent('Box').fillStyle = 'blueviolet';
 	},
 
