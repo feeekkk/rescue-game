@@ -9,5 +9,11 @@ var Portal = Juicy.Entity.extend({
 
 	render: function(context) {
 		this.getComponent('Box').render(context, this.transform.position.x, this.transform.position.y, this.transform.width, this.transform.height);
+	},
+
+	entered: function() {
+		this.scene.slowTime = true;
+		this.scene.flash = 1
+		this.scene.complete = true;
 	}
 });

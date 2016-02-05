@@ -1,8 +1,12 @@
 var Level = Juicy.Scene.extend({
 	tileSize: 40,
 	diamonds: [],
+	flash: false,
+	slowTime: false, // called from Portal
+	complete: false,
 
-	constructor: function() {
+	constructor: function(level) {
+		this.level = level || 1;
 		this.player = new Player(this);
 		this.flag = new Flag(this);
 		this.portal = new Portal(this);
@@ -15,6 +19,7 @@ var Level = Juicy.Scene.extend({
 
 		this.tileManager = new Juicy.Entity(this, ['LevelTiles']);
 		this.levelTiles = this.tileManager.getComponent('LevelTiles');
+		this.levelTiles.build(this.level); // which level to build the tiles for
 
 		// Positive = move down or right
 		this.camera = {
@@ -59,11 +64,31 @@ var Level = Juicy.Scene.extend({
 	},
 
 	update: function(dt) {
+		if (this.slowTime) {
+			dt = dt / 10;
+		}
 		this.player.update(dt);
 		this.flag.update(dt);
+		this.updateFlash(dt);
 		this.updateCamera(dt);
-		this.collisionDetector.update(dt);
+		if (!this.complete) {
+			// don't worry about updating collsisions such as spikes if the level is complete
+			this.collisionDetector.update(dt);
+		}
 		this.GUI.update(dt);
+	},
+
+	updateFlash: function(dt) {
+		if (this.flash !== false) {
+			if (this.flash < 0.35) {
+				this.startNextLevel();
+			}
+			this.flash -= dt * 5;
+		}
+	},
+
+	startNextLevel: function() {
+		Game.setState(new Level(this.level + 1));
 	},
 
 	updateCamera: function(dt) {
@@ -128,5 +153,14 @@ var Level = Juicy.Scene.extend({
 		context.restore();
 
 		this.GUI.render(context);
+
+		if (this.flash !== false) {
+			this.renderFlash(context);
+		}
+	},
+
+	renderFlash: function(context) {
+		context.fillStyle = 'rgba(0, 200, 255, ' + this.flash + ')';
+		context.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 	}
 });

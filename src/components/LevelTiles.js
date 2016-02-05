@@ -19,7 +19,6 @@ Juicy.Component.create('LevelTiles', {
 
     constructor: function() {
         this.loadImages();
-        this.build();
     },
 
     imagesLoaded: function() {
@@ -155,7 +154,7 @@ Juicy.Component.create('LevelTiles', {
      * builds the level tiles
      * @return {[type]} [description]
      */
-    build: function() {
+    build: function(level) {
       this.width = this.SECTION_WIDTH;
       this.height = this.SECTION_HEIGHT;
 
@@ -164,8 +163,7 @@ Juicy.Component.create('LevelTiles', {
 
       this.spawns = [];
       this.tiles.push([]);
-
-        var config = this.sections[0]; // first level
+        var config = this.sections[level - 1];
         var cfg = this.parse(config);
 
         // Get spawns

@@ -19,7 +19,7 @@ var CollisionDetector = Juicy.Entity.extend({
 	testCollisionWithPortal: function() {
 		if (this.player.transform.testCollision(this.portal.transform)) {
 			// go to next level
-			alert('pass');
+			this.portal.entered();
 		}
 	},
 
