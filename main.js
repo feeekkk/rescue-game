@@ -1,5 +1,5 @@
-var GAME_WIDTH = 720;
-var GAME_HEIGHT = 480;
+var GAME_WIDTH = 1080;
+var GAME_HEIGHT = 720;
 
 var gameCanvas = document.getElementById('mount-point');
 
