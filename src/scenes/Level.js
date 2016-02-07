@@ -1,13 +1,13 @@
 var Level = Juicy.Scene.extend({
 	tileSize: 40,
 
-	constructor: function(level) {
+	constructor: function(level, player) {
 		this.level = level || 1;
+		this.player = player || new Player(this);
 		this.diamonds = [];
 		this.flash = false;
 		this.slowTime = false; // called from Portal
 		this.complete = false;
-		this.player = new Player(this);
 		this.portal = new Portal(this);
 		this.collisionDetector = new CollisionDetector(this);
 
