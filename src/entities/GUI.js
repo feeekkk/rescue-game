@@ -1,17 +1,21 @@
 var GUI = Juicy.Entity.extend({
-	timerStarted: false,
-	time: 0,
 
 	init: function() {
 		this.player = this.scene.player;
 		this.scoreText = new Juicy.Text('Score: 0', '14pt Arial');
 		this.timerText = new Juicy.Text('Time: 0', '14pt Arial');
+		this.levelText = new Juicy.Text('Level: ' + this.scene.level, '14pt Arial');
+
+		this.timerStarted = false;
+		this.time = 0;
+
 		this.startTimer();
 	},
 
 	render: function(context) {
 		this.scoreText.draw(context, 10, 10);
 		this.timerText.draw(context, 10, 30);
+		this.levelText.draw(context, 10, 50);
 	},
 
 	startTimer: function() {

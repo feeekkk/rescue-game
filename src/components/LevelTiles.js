@@ -14,11 +14,11 @@ Juicy.Component.create('LevelTiles', {
     SPIKE: 'v',
     PORTAL: 'o',
     SPAWNABLE: /\^|%|\*|o/,
-    spawns: [],
-    tiles: [],
 
     constructor: function() {
         this.loadImages();
+        this.tiles = [];
+        this.spawns = [];
     },
 
     imagesLoaded: function() {
@@ -163,6 +163,7 @@ Juicy.Component.create('LevelTiles', {
 
       this.spawns = [];
       this.tiles.push([]);
+
         var config = this.sections[level - 1];
         var cfg = this.parse(config);
 
@@ -268,6 +269,38 @@ Juicy.Component.create('LevelTiles', {
     sections: [
           '----------------------------------------'
         + '                                        '
+        + '                                   o    '
+        + '   ^          *  *  *  *                '
+        + '                                        '
+        + '                                        '
+        + '----------------------------------------'
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '-                                       '
+        + '----------------------------------------',
+
+
+          '----------------------------------------'
+        + '                                        '
         + '                                        '
         + '   ^               *  *  *  *           '
         + '                                        '
@@ -295,7 +328,7 @@ Juicy.Component.create('LevelTiles', {
         + '-                                       '
         + '-                                       '
         + '-vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv'
-        + '----------------------------------------'
+        + '----------------------------------------',
     ],
 
     loadImages: function() {
