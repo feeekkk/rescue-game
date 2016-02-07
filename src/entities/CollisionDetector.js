@@ -8,7 +8,7 @@ var CollisionDetector = Juicy.Entity.extend({
 	},
 
 	update: function() {
-		if (!this.player.hasFlag) {
+		if (this.flag && !this.player.hasFlag) {
 			this.testCollisionWithFlag();
 		}
 		this.testCollisionWithPortal();

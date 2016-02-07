@@ -8,7 +8,6 @@ var Level = Juicy.Scene.extend({
 		this.slowTime = false; // called from Portal
 		this.complete = false;
 		this.player = new Player(this);
-		this.flag = new Flag(this);
 		this.portal = new Portal(this);
 		this.collisionDetector = new CollisionDetector(this);
 
@@ -46,6 +45,7 @@ var Level = Juicy.Scene.extend({
 					this.player.transform.position.y = spawn.y;
 					break;
 				case 'flag':
+					this.flag = new Flag(this);
 					this.flag.transform.position.x = spawn.x;
 					this.flag.transform.position.y = spawn.y;
 					break;
@@ -68,7 +68,11 @@ var Level = Juicy.Scene.extend({
 			dt = dt / 10;
 		}
 		this.player.update(dt);
-		this.flag.update(dt);
+
+		if (this.flag) {
+			this.flag.update(dt);
+		}
+
 		this.updateFlash(dt);
 		this.updateCamera(dt);
 		if (!this.complete) {
@@ -142,7 +146,10 @@ var Level = Juicy.Scene.extend({
 		this.tileManager.render(context, bounds.position.x, bounds.position.y, bounds.width, bounds.height);
 
 		this.player.render(context);
-		this.flag.render(context);
+
+		if (this.flag) {
+			this.flag.render(context);
+		}
 
 		for (var i = 0; i < this.diamonds.length; i++) {
 			this.diamonds[i].render(context);
