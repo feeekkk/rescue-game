@@ -16,5 +16,5 @@ Game.setInput(new Juicy.Input(document, {
 	SPACE: 32,
 }));
 
-//Game.setState(new TitleScreen()).run();
-Game.setState(new Level()).run();
+Game.setState(new TitleScreen()).run();
+//Game.setState(new Level()).run();
