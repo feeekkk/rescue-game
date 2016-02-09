@@ -1,12 +1,13 @@
 var Saw = Juicy.Entity.extend({
-	components: ['Box', 'Patrolling'],
+	components: ['Image', 'Patrolling'],
 
 	init: function() {
 		this.speed = 7;
 		this.direction = 1;
 		this.transform.height = 0.5;
 		this.transform.width = 1;
-		this.getComponent('Box').fillStyle = 'red';
+
+		this.getComponent('Image').setImage('./img/saw.png');
 	},
 
 	update: function(dt) {
@@ -18,6 +19,6 @@ var Saw = Juicy.Entity.extend({
 	},
 
 	render: function(context) {
-		this.getComponent('Box').render(context, this.transform.position.x, this.transform.position.y, this.transform.width, this.transform.height);
+		this.getComponent('Image').render(context, this.transform.position.x, this.transform.position.y, this.transform.width, this.transform.height);
 	}
 });

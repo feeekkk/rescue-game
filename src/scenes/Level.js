@@ -35,6 +35,7 @@ var Level = Juicy.Scene.extend({
 		this.spawnEntities();
 
 		this.collisionDetector = new CollisionDetector(this);
+		this.lastLevel = this.levelTiles.levels.length + 1;
 	},
 
 	setInstructionText: function() {
@@ -48,6 +49,8 @@ var Level = Juicy.Scene.extend({
 			case 3:
 				this.instructionText = 'Avoid revolving saws at all costs!';
 				break;
+			case 4:
+				this.instructionText = 'I wouldn\'t recommend sitting on a spike...';
 		}
 	},
 
@@ -129,8 +132,16 @@ var Level = Juicy.Scene.extend({
 			this.player.die();
 			alert('you forgot your son! Level lost');
 		} else {
-			// won level
-			Game.setState(new Level(this.level + 1));
+			var nextLevel = this.level + 1;
+			if (nextLevel == this.lastLevel) {
+				// game over
+				alert('you won');
+				Game.setState(new TitleScreen());
+			}
+			else {
+				// won level
+				Game.setState(new Level(nextLevel));
+			}
 		}
 	},
 
