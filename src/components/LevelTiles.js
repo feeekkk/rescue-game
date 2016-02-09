@@ -11,9 +11,10 @@ Juicy.Component.create('LevelTiles', {
     PLAYER: '^',
     FLAG: '%',
     DIAMOND: '*',
+    SAW: 'x',
     SPIKE: 'v',
     PORTAL: 'o',
-    SPAWNABLE: /\^|%|\*|o/,
+    SPAWNABLE: /\^|%|\*|o|x/,
 
     constructor: function() {
         this.loadImages();
@@ -164,7 +165,7 @@ Juicy.Component.create('LevelTiles', {
       this.spawns = [];
       this.tiles.push([]);
 
-        var config = this.sections[level - 1];
+        var config = this.levels[level - 1];
         var cfg = this.parse(config);
 
         // Get spawns
@@ -186,6 +187,9 @@ Juicy.Component.create('LevelTiles', {
                         break;
                     case this.PORTAL:
                         sptype = 'portal';
+                        break;
+                    case this.SAW:
+                        sptype = 'saw';
                         break;
               }
 
@@ -265,14 +269,13 @@ Juicy.Component.create('LevelTiles', {
       return cfg;
    },
 
-   // levels. when adding more levels, add level parameter to build
-    sections: [
+    levels: [
           '----------------------------------------'
         + '                                        '
         + '                                   o    '
         + '   ^          *  *  *  *                '
         + '                                        '
-        + '                                        '
+        + '                 x                      '
         + '----------------------------------------'
         + '-                                       '
         + '-                                       '

@@ -5,6 +5,7 @@ var CollisionDetector = Juicy.Entity.extend({
 		this.flag = this.scene.flag;
 		this.portal = this.scene.portal;
 		this.diamonds = this.scene.diamonds;
+		this.saws = this.scene.saws;
 	},
 
 	update: function() {
@@ -14,6 +15,19 @@ var CollisionDetector = Juicy.Entity.extend({
 		this.testCollisionWithPortal();
 		this.testCollisionWithDiamond();
 		this.testCollisionWithSpike();
+
+		if (this.saws) {
+			this.testCollisionWithSaw();
+		}
+	},
+
+	testCollisionWithSaw: function() {
+		for (var i = 0; i < this.saws.length; i++) {
+			if (this.player.transform.testCollision(this.saws[i].transform)) {
+				// ded
+				this.player.die();
+			}
+		}
 	},
 
 	testCollisionWithPortal: function() {

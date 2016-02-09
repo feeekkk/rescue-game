@@ -5,6 +5,7 @@ var Level = Juicy.Scene.extend({
 		this.level = level || 1;
 		this.player = player || new Player(this);
 		this.diamonds = [];
+		this.saws = [];
 		this.flash = false;
 		this.slowTime = false; // called from Portal
 		this.complete = false;
@@ -59,6 +60,12 @@ var Level = Juicy.Scene.extend({
 					this.portal.transform.position.x = spawn.x;
 					this.portal.transform.position.y = spawn.y;
 					break;
+				case 'saw':
+					var saw = new Saw(this);
+					saw.transform.position.x = spawn.x;
+					saw.transform.position.y = spawn.y;
+					this.saws.push(saw);
+					break;
 			}
 		}
 	},
@@ -75,11 +82,18 @@ var Level = Juicy.Scene.extend({
 
 		this.updateFlash(dt);
 		this.updateCamera(dt);
+		this.updateSaws(dt);
 		if (!this.complete) {
 			// don't worry about updating collsisions such as spikes if the level is complete
 			this.collisionDetector.update(dt);
 		}
 		this.GUI.update(dt);
+	},
+
+	updateSaws: function(dt) {
+		for (var i = 0; i < this.saws.length; i++) {
+			this.saws[i].update(dt);
+		}
 	},
 
 	updateFlash: function(dt) {
@@ -153,6 +167,10 @@ var Level = Juicy.Scene.extend({
 
 		for (var i = 0; i < this.diamonds.length; i++) {
 			this.diamonds[i].render(context);
+		}
+
+		for (var i = 0; i < this.saws.length; i++) {
+			this.saws[i].render(context);
 		}
 
 		this.portal.render(context);
