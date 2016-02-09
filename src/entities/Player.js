@@ -18,7 +18,11 @@ var Player = Juicy.Entity.extend({
 	},
 
 	die: function() {
-		this.lives--;
-		Game.setState(new Level(this.scene.level, this));
+		if (this.lives > 0) {
+			this.lives--;
+			Game.setState(new Level(this.scene.level, this));
+		} else {
+			Game.setState(new TitleScreen());
+		}
 	}
 });
