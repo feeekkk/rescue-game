@@ -16,6 +16,7 @@ var GUI = Juicy.Entity.extend({
 		this.diamondText = new Juicy.Text('x 0', '36pt Poplar Std', 'white', 'left');
 		this.timerText = new Juicy.Text('0', '72pt Poplar Std', 'white', 'center');
 		this.levelText = new Juicy.Text('Level: ' + this.scene.level, '36pt Poplar Std', 'white', 'center');
+		this.instructionText = new Juicy.Text(this.scene.instructionText, '24pt Poplar Std', 'yellow', 'center');
 
 		this.timerStarted = false;
 		this.time = 0;
@@ -37,6 +38,7 @@ var GUI = Juicy.Entity.extend({
 		var bottom = Game.height;
 		var right = Game.width;
 
+		this.instructionText.draw(context, middle + 50, bottom - 200);
 		this.timerText.draw(context, middle + 50, bottom - 150);
 		this.levelText.draw(context, middle + 50, bottom - 50);
 		this.diamondText.draw(context, right - 105, bottom - 60);

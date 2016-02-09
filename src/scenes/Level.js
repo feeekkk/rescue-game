@@ -14,6 +14,8 @@ var Level = Juicy.Scene.extend({
 		this.bg = new Juicy.Entity(this, ['Image']);
 		this.bg.getComponent('Image').setImage('/img/space.jpg');
 
+		this.setInstructionText();
+
 		this.GUI = new GUI(this);
 
 		this.tileManager = new Juicy.Entity(this, ['LevelTiles']);
@@ -33,6 +35,20 @@ var Level = Juicy.Scene.extend({
 		this.spawnEntities();
 
 		this.collisionDetector = new CollisionDetector(this);
+	},
+
+	setInstructionText: function() {
+		switch (this.level) {
+			case 1:
+				this.instructionText = 'Retrieve your son and enter the portal to pass the level';
+				break;
+			case 2:
+				this.instructionText = 'Collect diamonds to increase your level score';
+				break;
+			case 3:
+				this.instructionText = 'Avoid revolving saws at all costs!';
+				break;
+		}
 	},
 
 	/**
@@ -108,7 +124,14 @@ var Level = Juicy.Scene.extend({
 	},
 
 	startNextLevel: function() {
-		Game.setState(new Level(this.level + 1));
+		if (!this.player.hasFlag) {
+			// lost level
+			this.player.die();
+			alert('you forgot your son! Level lost');
+		} else {
+			// won level
+			Game.setState(new Level(this.level + 1));
+		}
 	},
 
 	updateCamera: function(dt) {
