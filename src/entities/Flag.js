@@ -7,6 +7,12 @@ var Flag = Juicy.Entity.extend({
 		this.getComponent('Box').fillStyle = 'blueviolet';
 	},
 
+	// if this is being updated, it is attached to the player
+	update: function() {
+		this.transform.position.x = this.scene.player.transform.position.x;
+		this.transform.position.y = this.scene.player.transform.position.y;
+	},
+
 	render: function(context) {
 		this.getComponent('Box').render(context, this.transform.position.x, this.transform.position.y, this.transform.width, this.transform.height);
 	}

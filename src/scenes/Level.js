@@ -10,7 +10,6 @@ var Level = Juicy.Scene.extend({
 		this.slowTime = false; // called from Portal
 		this.complete = false;
 		this.portal = new Portal(this);
-		this.collisionDetector = new CollisionDetector(this);
 
 		this.bg = new Juicy.Entity(this, ['Image']);
 		this.bg.getComponent('Image').setImage('/img/space.jpg');
@@ -32,6 +31,8 @@ var Level = Juicy.Scene.extend({
 		};
 
 		this.spawnEntities();
+
+		this.collisionDetector = new CollisionDetector(this);
 	},
 
 	/**
@@ -74,9 +75,10 @@ var Level = Juicy.Scene.extend({
 		if (this.slowTime) {
 			dt = dt / 10;
 		}
+
 		this.player.update(dt);
 
-		if (this.flag) {
+		if (this.player.hasFlag) {
 			this.flag.update(dt);
 		}
 
