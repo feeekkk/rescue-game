@@ -84,8 +84,10 @@ var GUI = Juicy.Entity.extend({
 			});
 		}
 
+		var diamonds = this.player.diamonds + this.player.diamondsThisLevel;
+
 		this.diamondText.set({
-			text: 'x ' + this.player.diamonds
+			text: 'x ' + diamonds
 		})
 	}
 });

@@ -48,7 +48,7 @@ var CollisionDetector = Juicy.Entity.extend({
 			if (this.player.transform.testCollision(this.diamonds[i].transform)) {
 				// we collided
 				this.diamonds.splice(i, 1);
-				this.player.diamonds++;
+				this.player.diamondsThisLevel++;
 			}
 		}
 	},

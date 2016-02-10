@@ -10,6 +10,7 @@ var Player = Juicy.Entity.extend({
 		this.lives = 3;
 		this.maxLives = this.lives;
 		this.diamonds = 0;
+		this.diamondsThisLevel = 0;
 	},
 
 	render: function(context) {
@@ -21,6 +22,7 @@ var Player = Juicy.Entity.extend({
 		if (this.lives > 0) {
 			this.lives--;
 			this.hasFlag = false;
+			this.diamondsThisLevel = 0;
 			Game.setState(new Level(this.scene.level, this));
 		} else {
 			Game.setState(new TitleScreen());

@@ -4,6 +4,7 @@ var Level = Juicy.Scene.extend({
 	constructor: function(level, player) {
 		this.level = level || 1;
 		this.player = player || new Player(this);
+		this.player.scene = this; // ensure this level is tied to the player
 		this.diamonds = [];
 		this.saws = [];
 		this.flash = false;
@@ -44,7 +45,7 @@ var Level = Juicy.Scene.extend({
 				this.instructionText = 'Retrieve your son and enter the portal to pass the level';
 				break;
 			case 2:
-				this.instructionText = 'Collect diamonds to increase your level score';
+				this.instructionText = 'Collect diamonds to increase your score';
 				break;
 			case 3:
 				this.instructionText = 'Avoid revolving saws at all costs!';
@@ -132,6 +133,10 @@ var Level = Juicy.Scene.extend({
 			this.player.die();
 			alert('you forgot your son! Level lost');
 		} else {
+			this.player.diamonds += this.player.diamondsThisLevel;
+			this.player.diamondsThisLevel = 0;
+			this.player.hasFlag = false;
+
 			var nextLevel = this.level + 1;
 			if (nextLevel == this.lastLevel) {
 				// game over
@@ -140,7 +145,7 @@ var Level = Juicy.Scene.extend({
 			}
 			else {
 				// won level
-				Game.setState(new Level(nextLevel));
+				Game.setState(new Level(nextLevel, this.player));
 			}
 		}
 	},
