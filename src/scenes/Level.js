@@ -16,6 +16,7 @@ var Level = Juicy.Scene.extend({
 		this.bg.getComponent('Image').setImage('/img/space.jpg');
 
 		this.setInstructionText();
+		this.setLevelTime();
 
 		this.GUI = new GUI(this);
 
@@ -52,6 +53,24 @@ var Level = Juicy.Scene.extend({
 				break;
 			case 4:
 				this.instructionText = 'I wouldn\'t recommend sitting on a spike...';
+				break;
+		}
+	},
+
+	setLevelTime: function() {
+		switch (this.level) {
+			case 1:
+				this.levelTime = 300;
+				break;
+			case 2:
+				this.levelTime = 100;
+				break;
+			case 3:
+				this.levelTime = 500;
+				break;
+			case 4:
+				this.levelTime = 500;
+				break;
 		}
 	},
 

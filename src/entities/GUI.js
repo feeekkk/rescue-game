@@ -19,7 +19,7 @@ var GUI = Juicy.Entity.extend({
 		this.instructionText = new Juicy.Text(this.scene.instructionText, '24pt Poplar Std', 'yellow', 'center');
 
 		this.timerStarted = false;
-		this.time = 0;
+		this.time = this.scene.levelTime;
 
 		for (var i = 0; i < this.player.maxLives; i++) {
 			if (i < this.player.lives) {
@@ -69,7 +69,6 @@ var GUI = Juicy.Entity.extend({
 
 	startTimer: function() {
 		this.trackTime = true;
-		this.time = 0;
 	},
 
 	stopTimer: function() {
@@ -78,10 +77,14 @@ var GUI = Juicy.Entity.extend({
 
 	update: function(dt) {
 		if (this.trackTime) {
-			this.time += dt * 10; // make time increase 10x faster
+			this.time -= dt * 10; // make time increase 10x faster
 			this.timerText.set({
 				text: Math.floor(this.time) // no decimals
 			});
+			if (this.time <= 0) {
+				this.player.die();
+				alert('you ran out of time!');
+			}
 		}
 
 		var diamonds = this.player.diamonds + this.player.diamondsThisLevel;
