@@ -25,7 +25,8 @@ var Player = Juicy.Entity.extend({
 			this.diamondsThisLevel = 0;
 			Game.setState(new Level(this.scene.level, this));
 		} else {
-			Game.setState(new TitleScreen());
+			// game over, no lives
+			Game.setState(new GameOverScreen(this));
 		}
 	}
 });

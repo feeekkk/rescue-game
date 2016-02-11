@@ -158,9 +158,7 @@ var Level = Juicy.Scene.extend({
 
 			var nextLevel = this.level + 1;
 			if (nextLevel == this.lastLevel) {
-				// game over
-				alert('you won');
-				Game.setState(new TitleScreen());
+				Game.setState(new GameOverScreen(this.player));
 			}
 			else {
 				// won level

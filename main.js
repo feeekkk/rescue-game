@@ -17,4 +17,7 @@ Game.setInput(new Juicy.Input(document, {
 }));
 
 //Game.setState(new TitleScreen()).run();
-Game.setState(new Level()).run();
+//Game.setState(new Level()).run();
+var player = new Player();
+player.diamonds = 100;
+Game.setState(new GameOverScreen(player)).run();
