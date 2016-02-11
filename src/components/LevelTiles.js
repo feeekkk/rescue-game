@@ -403,7 +403,7 @@ Juicy.Component.create('LevelTiles', {
         var self = this;
 
         this.tileImg = new Image();
-        this.tileImg.src = 'img/tile.png';
+        this.tileImg.src = './img/tile.png';
 
         this.tileImg.onload = function() {
             self.tile1rdy = true;
@@ -411,7 +411,7 @@ Juicy.Component.create('LevelTiles', {
         }
 
         this.spikeImg = new Image();
-        this.spikeImg.src = 'img/spike.png';
+        this.spikeImg.src = './img/spike.png';
 
         this.spikeImg.onload = function() {
             self.tile2rdy = true;

@@ -5,11 +5,11 @@ var GUI = Juicy.Entity.extend({
 
 		this.liveImages = [];
 		this.lifeImage = new Image();
-		this.lifeImage.src = 'img/life.png';
+		this.lifeImage.src = './img/life.png';
 		this.emptyLifeImage = new Image();
-		this.emptyLifeImage.src = 'img/life_empty.png';
+		this.emptyLifeImage.src = './img/life_empty.png';
 
-		this.diamond = new Diamond();
+		this.diamond = new Diamond(this.scene);
 		this.diamond.transform.width = 20;
 		this.diamond.transform.height = 20;
 

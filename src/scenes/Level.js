@@ -91,7 +91,7 @@ var Level = Juicy.Scene.extend({
 					this.flag.transform.position.y = spawn.y;
 					break;
 				case 'diamond':
-					var d = new Diamond();
+					var d = new Diamond(this);
 					d.transform.position.x = spawn.x;
 					d.transform.position.y = spawn.y;
 					this.diamonds.push(d);
