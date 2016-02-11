@@ -17,6 +17,9 @@ Juicy.Component.create('Physics', {
 
 	jump: function() {
 		if (this.onGround) {
+			var sound = new Audio('./music/jump.wav');
+			sound.volume = 0.1;
+			sound.play();
 			var self = this;
 				var butt = {
 	            x: this.entity.transform.position.x,

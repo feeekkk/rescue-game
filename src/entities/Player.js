@@ -7,10 +7,11 @@ var Player = Juicy.Entity.extend({
 		this.getComponent('Box').fillStyle = 'lawngreen';
 
 		this.hasFlag = false;
-		this.lives = 3;
+		this.lives = 5;
 		this.maxLives = this.lives;
 		this.diamonds = 0;
 		this.diamondsThisLevel = 0;
+		this.scream = new Audio('./music/Scream.mp3');
 	},
 
 	render: function(context) {
@@ -19,6 +20,7 @@ var Player = Juicy.Entity.extend({
 	},
 
 	die: function() {
+		this.scream.play();
 		if (this.lives > 0) {
 			this.lives--;
 			this.hasFlag = false;

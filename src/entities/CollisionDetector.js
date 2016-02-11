@@ -47,6 +47,9 @@ var CollisionDetector = Juicy.Entity.extend({
 		for (var i = this.diamonds.length -1; i >= 0; i--) {
 			if (this.player.transform.testCollision(this.diamonds[i].transform)) {
 				// we collided
+				var sound = new Audio('./music/Ding.wav');
+				sound.volume = 0.5;
+				sound.play();
 				this.diamonds.splice(i, 1);
 				this.player.diamondsThisLevel++;
 			}

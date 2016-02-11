@@ -25,3 +25,7 @@ Game.setState(new TitleScreen()).run();
 var player = new Player();
 player.diamonds = 100;
 //Game.setState(new GameOverScreen('game over message harrrrrrr', player)).run();
+
+var audio = new Audio('./music/heroes.mp3');
+audio.loop = true;
+audio.play();
