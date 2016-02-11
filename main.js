@@ -3,8 +3,12 @@ var GAME_HEIGHT = 720;
 
 var gameCanvas = document.getElementById('mount-point');
 
+/*
 gameCanvas.style.width = GAME_WIDTH;
 gameCanvas.style.height = GAME_HEIGHT;
+gameCanvas.width = 1280;
+gameCanvas.height = 720;
+*/
 
 var Game = new Juicy.Game(gameCanvas, GAME_WIDTH, GAME_HEIGHT);
 
@@ -16,8 +20,8 @@ Game.setInput(new Juicy.Input(document, {
 	SPACE: 32,
 }));
 
-//Game.setState(new TitleScreen()).run();
+Game.setState(new TitleScreen()).run();
 //Game.setState(new Level()).run();
 var player = new Player();
 player.diamonds = 100;
-Game.setState(new GameOverScreen(player)).run();
+//Game.setState(new GameOverScreen('game over message harrrrrrr', player)).run();

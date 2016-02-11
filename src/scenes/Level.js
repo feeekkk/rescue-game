@@ -43,7 +43,7 @@ var Level = Juicy.Scene.extend({
 	setInstructionText: function() {
 		switch (this.level) {
 			case 1:
-				this.instructionText = 'Retrieve your son and enter the portal to pass the level';
+				this.instructionText = 'Retrieve your son (Press up to jump) and enter the portal to pass the level';
 				break;
 			case 2:
 				this.instructionText = 'Collect diamonds to increase your score';
@@ -158,7 +158,7 @@ var Level = Juicy.Scene.extend({
 
 			var nextLevel = this.level + 1;
 			if (nextLevel == this.lastLevel) {
-				Game.setState(new GameOverScreen(this.player));
+				Game.setState(new GameOverScreen('Congrats, you completed every level!', this.player));
 			}
 			else {
 				// won level

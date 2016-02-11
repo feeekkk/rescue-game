@@ -26,7 +26,7 @@ var Player = Juicy.Entity.extend({
 			Game.setState(new Level(this.scene.level, this));
 		} else {
 			// game over, no lives
-			Game.setState(new GameOverScreen(this));
+			Game.setState(new GameOverScreen('You ran out of lives', this));
 		}
 	}
 });
