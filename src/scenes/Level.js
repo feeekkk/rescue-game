@@ -72,7 +72,7 @@ var Level = Juicy.Scene.extend({
 				this.levelTime = 500;
 				break;
 			case 4:
-				this.levelTime = 500;
+				this.levelTime = 200;
 				break;
 			case 5:
 				this.levelTime = 500;
@@ -122,10 +122,7 @@ var Level = Juicy.Scene.extend({
 		}
 
 		this.player.update(dt);
-
-		if (this.player.hasFlag) {
-			this.flag.update(dt);
-		}
+		this.flag.update(dt);
 
 		this.updateFlash(dt);
 		this.updateCamera(dt);
