@@ -34,9 +34,16 @@ var GUI = Juicy.Entity.extend({
 	},
 
 	render: function(context) {
+		context.save();
+
 		var middle = Game.width / 2;
 		var bottom = Game.height;
 		var right = Game.width;
+
+		// draw border
+		var padding = 10;
+		context.strokeStyle = 'lawngreen';
+		context.strokeRect(padding, padding, Game.width - (padding*2), Game.height - (padding*2));
 
 		this.instructionText.draw(context, middle + 50, bottom - 200);
 		this.timerText.draw(context, middle + 50, bottom - 150);
@@ -53,6 +60,7 @@ var GUI = Juicy.Entity.extend({
 		this.diamond.transform.position.x = right - 150;
 		this.diamond.transform.position.y = bottom - 50;
 		this.diamond.render(context);
+		context.restore();
 	},
 
 /**
