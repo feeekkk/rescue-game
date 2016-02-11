@@ -49,10 +49,13 @@ var Level = Juicy.Scene.extend({
 				this.instructionText = 'Collect diamonds to increase your score';
 				break;
 			case 3:
-				this.instructionText = 'Avoid revolving saws at all costs!';
+				this.instructionText = 'Avoid revolving spikes at all costs!';
 				break;
 			case 4:
-				this.instructionText = 'I wouldn\'t recommend sitting on a spike...';
+				this.instructionText = 'I wouldn\'t recommend sitting on a spike either...';
+				break;
+			case 5:
+				this.instructionText = 'Trust falls......';
 				break;
 		}
 	},
@@ -63,12 +66,15 @@ var Level = Juicy.Scene.extend({
 				this.levelTime = 300;
 				break;
 			case 2:
-				this.levelTime = 100;
+				this.levelTime = 200;
 				break;
 			case 3:
 				this.levelTime = 500;
 				break;
 			case 4:
+				this.levelTime = 500;
+				break;
+			case 5:
 				this.levelTime = 500;
 				break;
 		}
