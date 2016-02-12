@@ -20,12 +20,18 @@ Game.setInput(new Juicy.Input(document, {
 	SPACE: 32,
 }));
 
+
 Game.setState(new TitleScreen()).run();
 //Game.setState(new Level(6)).run();
 var player = new Player();
 player.diamonds = 100;
 //Game.setState(new GameOverScreen('game over message harrrrrrr', player)).run();
 
-var audio = new Audio('./music/heroes.mp3');
-audio.loop = true;
-audio.play();
+window.game_audio = new Audio('./music/heroes.mp3');
+window.game_audio.loop = true;
+window.game_audio.play();
+
+var el = document.getElementById('stop-audio');
+el.onclick = function() {
+	window.game_audio.pause();
+}
