@@ -60,6 +60,9 @@ var Level = Juicy.Scene.extend({
 			case 6:
 				this.instructionText = 'We\'re just getting started.';
 				break;
+			case 7:
+				this.instructionText = 'The Final Episode.';
+				break;
 		}
 	},
 
@@ -81,6 +84,9 @@ var Level = Juicy.Scene.extend({
 				this.levelTime = 500;
 				break;
 			case 6:
+				this.levelTime = 500;
+				break;
+			case 7:
 				this.levelTime = 500;
 				break;
 		}
