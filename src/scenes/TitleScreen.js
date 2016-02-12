@@ -13,6 +13,7 @@ var TitleScreen = Juicy.Scene.extend({
         this.play.getComponent('Box').fillStyle = 'lawngreen';
 
         this.playText = new Juicy.Text('Play Now', '36pt Poplar Std', 'purple', 'left');
+        this.instructions = new Juicy.Text('Find your son and bring him through the portal to complete each level. Collect diamonds to increase your score before time runs out!', '12pt Arial', 'white', 'center');
 
         this.logo = new Juicy.Entity(this, ['Image']);
         this.logo.getComponent('Image').setImage('./img/logo.png');
@@ -28,6 +29,7 @@ var TitleScreen = Juicy.Scene.extend({
         this.logo.render(context);
         this.play.render(context);
         this.playText.draw(context, Game.width / 2 - 20, Game.height / 2 + 70);
+        this.instructions.draw(context, Game.width / 2, Game.height / 2 + 200);
     },
 
     click: function(x, y) {
